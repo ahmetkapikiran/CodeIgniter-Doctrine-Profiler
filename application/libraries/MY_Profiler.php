@@ -5,11 +5,15 @@
     * Author URI:  http://ahmetkapikiran.com/
     */
     Class MY_Profiler extends CI_Profiler {
-        /**
-        * put your comment there...
-        * 
-        */
-        function _compile_doctrine_output() {
+	
+	
+		public function __construct($config = array())
+		{
+			$this->_available_sections[] = 'doctrine_output';
+			parent::__construct($config);
+		}
+        
+        protected function _compile_doctrine_output() {
             $output  = "\n\n";
             $output .= '<fieldset style="border:1px solid #009999;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
             $output .= "\n";
@@ -33,21 +37,5 @@
             $output .= "</fieldset>";
 
             return $output;    
-        }
-
-        function run() {
-            $output = "<div id='codeigniter_profiler' style='clear:both;background-color:#fff;padding:10px;'>";
-
-            $output .= $this->_compile_uri_string();
-            $output .= $this->_compile_controller_info();
-            $output .= $this->_compile_memory_usage();
-            $output .= $this->_compile_benchmarks();
-            $output .= $this->_compile_get();
-            $output .= $this->_compile_post();
-            $output .= $this->_compile_doctrine_output();
-            $output .= $this->_compile_queries();
-            $output .= '</div>';
-
-            return $output;
         }
 } 
