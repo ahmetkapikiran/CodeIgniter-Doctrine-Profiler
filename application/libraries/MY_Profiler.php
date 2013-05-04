@@ -5,19 +5,19 @@
     * Author URI:  http://ahmetkapikiran.com/
     */
     Class MY_Profiler extends CI_Profiler {
-	
-	
-		public function __construct($config = array())
-		{
-			$this->_available_sections[] = 'doctrine_output';
-			parent::__construct($config);
-		}
+
+
+        public function __construct($config = array())
+        {
+            $this->_available_sections[] = 'doctrine_output';
+            parent::__construct($config);
+        }
         
         protected function _compile_doctrine_output() {
             $output  = "\n\n";
             $output .= '<fieldset style="border:1px solid #009999;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
             $output .= "\n";
-            $output .= '<legend style="color:#009999;">  '.'DOCTRINE QUERIES'.'  </legend>';
+            $output .= '<legend style="color:#009999;"> DOCTRINE QUERIES('.count($CI->doctrine_queries).') </legend>';
             $output .= "\n";
             $CI =& get_instance();
             if (count($CI->doctrine_queries)==0) {
@@ -38,4 +38,4 @@
 
             return $output;    
         }
-} 
+}
